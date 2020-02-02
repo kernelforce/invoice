@@ -9,8 +9,8 @@ class invoice_m:
     """
     增值税机打发票结构化识别
     """
-    def __init__(self,result):
-        self.result = union_rbox(result,0.2)
+    def __init__(self, result):
+        self.result = union_rbox(result, 0.2)
         self.N = len(self.result)
         self.res = {}
         self.code()                             #发票代码
@@ -41,9 +41,9 @@ class invoice_m:
         """
         nu = {}
         for i in range(self.N):
-            txt = self.result[i]['text'].replace(' ','')
-            txt = txt.replace(' ','')
-            res1 = re.findall('(?:(?<!\d)\d{8}(?!\d))',txt)
+            txt = self.result[i]['text'].replace(' ', '')
+            txt = txt.replace(' ', '')
+            res1 = re.findall('(?:(?<!\d)\d{8}(?!\d))', txt)
             if len(res1) > 0:
                 nu["发票号码"] = res1[0]
                 self.res.update(nu)
@@ -55,9 +55,9 @@ class invoice_m:
         """
         da = {}
         for i in range(self.N):
-            txt = self.result[i]['text'].replace(' ','')
-            txt = txt.replace(' ','')
-            res1 = re.findall('[0-9]{1,4}年[0-9]{1,2}月[0-9]{1,2}日',txt)
+            txt = self.result[i]['text'].replace(' ', '')
+            txt = txt.replace(' ', '')
+            res1 = re.findall('[0-9]{1,4}年[0-9]{1,2}月[0-9]{1,2}日', txt)
             if len(res1) > 0:
                 da["开票日期"] = res1[0]
                 self.res.update(da)
@@ -69,9 +69,9 @@ class invoice_m:
         """
         pri = {}
         for i in range(self.N):
-            txt = self.result[i]['text'].replace(' ','')
-            txt = txt.replace(' ','')
-            res1 = re.findall('￥[0-9]{1,8}.[0-9]{1,2}',txt)
+            txt = self.result[i]['text'].replace(' ', '')
+            txt = txt.replace(' ', '')
+            res1 = re.findall('￥[0-9]{1,8}.[0-9]{1,2}', txt)
             if len(res1) > 0:
                 pri["税后价格"] = res1[0]
                 self.res.update(pri)
@@ -83,21 +83,12 @@ class invoice_m:
         """
         check = {}
         for i in range(self.N):
-            txt = self.result[i]['text'].replace(' ','')
-            txt = txt.replace(' ','')
-            res = re.findall('校验码[0-9]{1,20}',txt)
+            txt = self.result[i]['text'].replace(' ', '')
+            txt = txt.replace(' ', '')
+            res = re.findall('校验码[0-9]{1,20}', txt)
             res += re.findall('码[0-9]{1,20}', txt)
-            res += re.findall('校验码:[0-9]{1,20}',txt)
+            res += re.findall('校验码:[0-9]{1,20}', txt)
             if len(res) > 0:
-                check['校验码'] = res[0].replace('校验码','').replace('校验码:','').replace('码','')
+                check['校验码'] = res[0].replace('校验码', '').replace('校验码:', '').replace('码', '')
                 self.res.update(check)
                 break
-                
-                
-                
-            
-            
-
-
-
-
