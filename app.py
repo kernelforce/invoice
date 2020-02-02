@@ -19,7 +19,7 @@ from application.invoice_e import invoice_e
 from application.invoice_m import invoice_m
 import pytz
 from config import service_name, service_port
-allowed_extension = ['jpg','png']
+allowed_extension = ['jpg', 'png']
 temp_dir = "temp"
 
 # Flask
@@ -65,17 +65,17 @@ def invoice_ocr():
     if source_file_suffix not in allowed_extension:
         return build_api_result(102, "失败，文件格式问题", source_file_name, {}, {}, {})
 
-    invoice_file_name = str(uuid.uuid3(uuid.NAMESPACE_URL, source_file_name))+"."+source_file_suffix
+    invoice_file_name = str(uuid.uuid3(uuid.NAMESPACE_URL, source_file_name)) + "." + source_file_suffix
 
     upload_path = temp_dir
     whole_path = os.path.join(upload_path, invoice_file_name)
     file.save(whole_path)
     
     #去章处理方法
-    def remove_stamp(path,invoice_file_name):
-        img = cv2.imread(path,cv2.IMREAD_COLOR)
-        B_channel,G_channel,R_channel=cv2.split(img)     # 注意cv2.split()返回通道顺序
-        _,RedThresh = cv2.threshold(R_channel,170,355,cv2.THRESH_BINARY)
+    def remove_stamp(path, invoice_file_name):
+        img = cv2.imread(path, cv2.IMREAD_COLOR)
+        B_channel, G_channel, R_channel=cv2.split(img)     # 注意cv2.split()返回通道顺序
+        _, RedThresh = cv2.threshold(R_channel, 170, 355, cv2.THRESH_BINARY)
         cv2.imwrite('./{}/nostamp_{}'.format(temp_dir, invoice_file_name), RedThresh)
     
     def Recognition_invoice(path):
@@ -97,14 +97,14 @@ def invoice_ocr():
             for i in range(N):
                 txt = result_type[i]['text'].replace(' ', '')
                 txt = txt.replace(' ', '')
-                type_1 = re.findall('电子普通',txt)
-                type_2 = re.findall('普通发票',txt)
-                type_3 = re.findall('专用发票',txt)
-                if type_1 == None:
+                type_1 = re.findall('电子普通', txt)
+                type_2 = re.findall('普通发票', txt)
+                type_3 = re.findall('专用发票', txt)
+                if type_1 is None:
                     type_1 = []
-                if type_2 == None:
+                if type_2 is None:
                     type_2 = []
-                if type_3 == None:
+                if type_3 is None:
                     type_3 = []
             print(type_1)
             print(type_2)
@@ -113,7 +113,7 @@ def invoice_ocr():
                 return 1
             else:
                 return 2
-        elif len(result_type)==0:
+        elif len(result_type) == 0:
             return 2
     
     recognition_invoice = Recognition_invoice(whole_path)
