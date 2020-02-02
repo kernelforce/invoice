@@ -3,7 +3,7 @@
 ## 环境
    1. python3.5/3.6
    2. 依赖项安装：pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-   3. 安装torch（参考https://pytorch.org/get-started/locally），pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html 
+   3. 安装torch（参考https://pytorch.org/get-started/locally）：pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html 
    4. 有GPU环境的可修改安装requirements.txt对应版本的tensorflow-gpu，config.py文件中控制GPU的开关
 ## 模型架构
     YOLOv3 + CRNN + CTC
