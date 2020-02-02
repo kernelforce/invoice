@@ -138,7 +138,7 @@ import tensorflow as tf
 os.environ["CUDA_VISIBLE_DEVICES"] = '0'   #指定第一块GPU可用
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.3  # 程序最多只能占用指定gpu30%的显存
-sess = tf.Session(config = config)
+sess = tf.Session(config=config)
 
 def ocr(img):
     h, w = img.shape[:2]
