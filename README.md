@@ -2,9 +2,9 @@
   识别type：增值税电子普通发票，增值税普通发票，增值税专用发票；识别字段为：发票代码、发票号码、开票日期、校验码、税后金额等
 ## 环境
    1. python3.5/3.6
-   2. 依赖项安装：pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-   3. 安装torch（参考https://pytorch.org/get-started/locally）：pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html 
-   4. 有GPU环境的可修改安装requirements.txt对应版本的tensorflow-gpu，config.py文件中控制GPU的开关
+   2. 依赖项安装：`pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple`
+   3. 有GPU环境的可修改安装requirements.txt对应版本的tensorflow-gpu，config.py文件中控制GPU的开关
+   4. 安装torch：`pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html`，（参考https://pytorch.org/get-started/locally）
 ## 模型架构
     YOLOv3 + CRNN + CTC
    
