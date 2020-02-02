@@ -18,7 +18,7 @@ from apphelper.image import union_rbox
 from application.invoice_e import invoice_e
 from application.invoice_m import invoice_m
 import pytz
-port = 11111
+from config import service_name, service_port
 allowed_extension = ['jpg','png']
 temp_dir = "temp"
 
@@ -50,7 +50,7 @@ def get_file_suffix(filename):
 
 
 # 增值税发票OCR识别接口
-@app.route('/invoice-ocr', methods=['POST'])
+@app.route('/'+service_name, methods=['POST'])
 def invoice_ocr():
     # 校验请求参数
     if 'file' not in request.files:
@@ -141,4 +141,4 @@ def invoice_ocr():
 if __name__ == "__main__":
     # Run
     app.config['JSON_AS_ASCII'] = False
-    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
+    app.run(host='0.0.0.0', port=service_port, debug=False, use_reloader=False)
