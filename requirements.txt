@@ -33,10 +33,10 @@ scipy
 SecretStorage
 six
 soupsieve
-tensorboard
+tensorboard==1.13.1
 tensorflow==1.13.1
 termcolor
-torch
 urllib3
 Werkzeug
 tqdm
+pytz
